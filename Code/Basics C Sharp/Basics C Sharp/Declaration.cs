@@ -7,7 +7,14 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    abstract class Human
+
+    abstract class Object
+    {
+        
+    }
+
+
+    abstract class Human : Object
     {
         private DateTime dateOfBirth;
 
