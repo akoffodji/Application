@@ -53,5 +53,24 @@ namespace Basics_C_Sharp
         }
 
     }   
-    
+
+    class Student : Human
+    {
+
+    }
+
+    class Employee : Human
+    {
+
+    }
+
+    class Parent : Human
+    {
+
+    }
+
+    class Professor : Employee
+    {
+
+    }
 }
