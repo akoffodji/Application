@@ -81,4 +81,42 @@ namespace Application
 
     }
 
+    unsafe class testerPointeur
+    {
+        private int* numberStudent;
+        private int* numberProf;
+
+        public testerPointeur()
+        {
+            int a = 8;
+            numberProf = &a;
+            numberStudent = &a;
+        }
+
+        public int* getNumberStudent()
+        {
+            return numberStudent;
+        }
+
+        public int* getNumberProf()
+        {
+            return numberProf;
+        }
+
+        public void setNumberStudent(ref int value)
+        {
+            fixed (int* ptr = &value)
+            {
+                numberStudent = ptr;
+            }
+        }
+
+        public void setNumberProf(ref int value)
+        {
+            fixed (int* ptr = &value)
+            {
+                numberProf = ptr;
+            }
+        }
+    }
 }
