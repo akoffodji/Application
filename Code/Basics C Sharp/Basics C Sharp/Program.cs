@@ -1,4 +1,7 @@
-﻿using System;
+﻿#define RELEASE
+#define DEBUG
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +19,11 @@ namespace Application
             testerPointeur oneTest;
             oneTest = new testerPointeur();
 
+        #if (DEBUG)
+            Console.WriteLine(onePerson.getFirstName());
+        #endif
+        #if (DEBUG || RELEASE)
             Console.WriteLine(onePerson.getFirstName() + " " + onePerson.getLastName());
-
             int valueProf = 5;
             int valueStudent = 25;
 
@@ -39,6 +45,7 @@ namespace Application
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
+         #endif
         }
     }
 }
