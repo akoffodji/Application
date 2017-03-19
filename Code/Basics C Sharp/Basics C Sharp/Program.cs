@@ -57,6 +57,17 @@ namespace Basics_C_Sharp
     class Student : Human
     {
 
+        protected string classTaken;
+
+        public string getClassTaken()
+        {
+            return classTaken;
+        }
+
+        private void setClassTaken(string value)
+        {
+            classTaken = value;
+        }
     }
 
     class Employee : Human
