@@ -60,7 +60,7 @@ namespace Application
             return classTaken;
         }
 
-        private void setClassTaken(string value)
+        public void setClassTaken(string value)
         {
             classTaken = value;
         }
