@@ -10,7 +10,16 @@ namespace Basics_C_Sharp
     {
         static void Main(string[] args)
         {
+
+            Human onePerson;
+            onePerson = new Student();
+
+            onePerson.setFirstName("Thibault");
+            onePerson.setLastName("Courtois");
+
             Console.WriteLine("Hello World Jean Jacques Sur le Cloud!");
+
+            Console.WriteLine(onePerson.getFirstName() + " " + onePerson.getLastName());
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to exit.");
@@ -21,11 +30,19 @@ namespace Basics_C_Sharp
 
     abstract class Human
     {
-        protected DateTime dateOfBirth;
+        private DateTime dateOfBirth;
 
-        protected string firstName;
+        private string firstName;
 
-        protected string lastName;
+        private string lastName;
+
+
+        public Human()
+        {
+            dateOfBirth = new DateTime(1992,9,17);
+            firstName = "Jean Jacques";
+            lastName = "Akoffodji";
+        }
 
         public string getFirstName()
         {
@@ -42,12 +59,12 @@ namespace Basics_C_Sharp
             return dateOfBirth;
         }
 
-        private void setFirstName(string value)
+        public void setFirstName(string value)
         {
             firstName = value;
         }
 
-        private void setLastName(string value)
+        public void setLastName(string value)
         {
             lastName = value;
         }
