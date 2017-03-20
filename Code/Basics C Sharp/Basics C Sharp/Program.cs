@@ -1,16 +1,19 @@
-﻿#define RELEASE
-#define DEBUG
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using testInterface;
 
 namespace Application
 {//blabla William
     class Program
     {
+        static void PrintPoint(IPoint p)
+        {
+            Console.WriteLine("x={0}, y={1}", p.x, p.y);
+        }
+
         unsafe static void Main(string[] args)
         {
 
@@ -18,11 +21,17 @@ namespace Application
             onePerson = new Student();
             testerPointeur oneTest;
             oneTest = new testerPointeur();
+            Point p = new Point(17, 25);
 
-        #if (DEBUG)
-            Console.WriteLine(onePerson.getFirstName());
-        #endif
-        #if (DEBUG || RELEASE)
+#if (DEBUG)
+            Console.WriteLine("En mode Debug");
+            PrintPoint(p);
+            Console.WriteLine("Modification de x et y");
+            p.x = 1017;
+            p.y = 1710;
+            Console.WriteLine("My point: x = " + p.x + " y = " + p.y);
+#endif
+#if (!DEBUG)
             Console.WriteLine(onePerson.getFirstName() + " " + onePerson.getLastName());
             int valueProf = 5;
             int valueStudent = 25;
@@ -45,7 +54,7 @@ namespace Application
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
-         #endif
+#endif
         }
     }
 }
