@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using testInterface;
+using Declaration;
 
 namespace Application
 {//blabla William
@@ -18,7 +19,9 @@ namespace Application
         {
 
             Human onePerson;
-            onePerson = new Student();
+            onePerson = new Student("Jaelle","Yaba",1993,8,5);
+            onePerson.objectName = "Special Student";
+            Console.WriteLine(onePerson.objectName);
             testerPointeur oneTest;
             oneTest = new testerPointeur();
             Point p = new Point(17, 25);
@@ -31,7 +34,7 @@ namespace Application
             p.y = 1710;
             Console.WriteLine("My point: x = " + p.x + " y = " + p.y);
 #endif
-#if (!DEBUG)
+#if (RELEASE)
             Console.WriteLine(onePerson.getFirstName() + " " + onePerson.getLastName());
             int valueProf = 5;
             int valueStudent = 25;

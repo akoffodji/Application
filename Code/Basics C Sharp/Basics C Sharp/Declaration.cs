@@ -66,72 +66,184 @@ namespace testInterface
 
 
 
-namespace Application
+namespace Declaration
 {
 
-    abstract class Object
+    interface IObject
     {
-        
+        string objectName
+        {
+            set; get;
+        }
+        string objectDescription
+        {
+            set; get;
+        }
     }
 
-
-    abstract class Human : Object
+    class Object : IObject
     {
-        private DateTime dateOfBirth;
+        // Attributs
+        private string _objectName;
+        private string _objectDescription;
 
-        private string firstName;
-
-        private string lastName;
-
-
-        public Human()
+        // Contructeurs
+        public Object(string name, string description)
         {
-            dateOfBirth = new DateTime(1992, 9, 17);
-            firstName = "Jean Jacques";
-            lastName = "Akoffodji";
+            _objectName = name;
+            _objectDescription = description;
         }
 
-        public string getFirstName()
+        // Implementations des méthodes
+        public string objectName
         {
-            return firstName;
+            get
+            {
+                return _objectName;
+            }
+
+            set
+            {
+                _objectName = value;
+            }
         }
 
-        public string getLastName()
+        public string objectDescription
         {
-            return lastName;
+            get
+            {
+                return _objectDescription;
+            }
+
+            set
+            {
+                _objectDescription = value;
+            }
+        }
+    }
+
+    interface IHuman
+    {
+        string firstName
+        {
+            set; get;
+        }
+        string lastName
+        {
+            set; get;
+        }
+        DateTime dateOfBirth
+        {
+            set; get;
+        }
+    }
+
+    class Human : Object, IHuman
+    {
+
+        public Human():base("Human", "Description of class Human")
+        {
+            _firstName = "Random First Name";
+            _lastName = "Random Last Name";
+            _dateOfBirth = new DateTime(1717, 7, 17);
         }
 
-        public DateTime getDateOfBirth()
+        public Human(string firstName, string lastName, int year, int month, int day) :base("Human","Description of class Human")
         {
-            return dateOfBirth;
+            _firstName = firstName;
+            _lastName = lastName;
+            _dateOfBirth = new DateTime(year, month, day);
         }
 
-        public void setFirstName(string value)
+        public string firstName
         {
-            firstName = value;
+            set
+            {
+                _firstName = value;
+            }
+
+            get
+            {
+                return _firstName;
+            }
+
         }
 
-        public void setLastName(string value)
+        public string lastName
         {
-            lastName = value;
+            set
+            {
+                _lastName = value;
+            }
+
+            get
+            {
+                return _lastName;
+            }
+
         }
+
+        public DateTime dateOfBirth
+        {
+            set
+            {
+                _dateOfBirth = value;
+            }
+
+            get
+            {
+                return _dateOfBirth;
+            }
+
+        }
+
+        private string _firstName;
+
+        private string _lastName;
+
+        private DateTime _dateOfBirth;
 
     }
 
-    class Student : Human
+    interface IStudent
     {
-
-        protected string classTaken;
-
-        public string getClassTaken()
+        string classTaken
         {
-            return classTaken;
+            set; get;
+        }
+    }
+
+    class Student : Human, IStudent
+    {
+        public Student(string firstName, string lastName, int year, int month, int day) :base(firstName, lastName, year, month, day)
+        {
+            base.objectName = "Student";
+            base.objectDescription = "Any human being enrolled to the school.";
+            _classTaken = "Mathematique";
         }
 
-        public void setClassTaken(string value)
+        public Student() : base()
         {
-            classTaken = value;
+            base.objectName = "Student";
+            base.objectDescription = "Any human being enrolled to the school.";
+            _classTaken = "Mathematique";
         }
+
+        public string classTaken
+        {
+            set
+            {
+                _classTaken = value;
+            }
+
+            get
+            {
+                return _classTaken;
+            }
+
+        }
+
+        private string _classTaken;
     }
 
     class Employee : Human
