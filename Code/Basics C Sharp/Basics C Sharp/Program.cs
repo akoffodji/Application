@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using testInterface;
 using Declaration;
+using MySql.Data.MySqlClient;
 
 namespace Application
 {//blabla William
+
+
     class Program
     {
         static void PrintPoint(IPoint p)
@@ -18,9 +21,53 @@ namespace Application
         unsafe static void Main(string[] args)
         {
 
+
+            MySqlConnection variableDeConnection = new MySqlConnection();
+
+            variableDeConnection.ConnectionString = @"server=localhost;
+                                          user id=root;
+                                          persistsecurityinfo=True;
+                                          database=sakila;password=jj0000";
+
+
+            try
+            {
+                variableDeConnection.Open();
+                Console.WriteLine("Connection reussie");
+                try
+                {
+                    MySqlCommand variableDeCommande = new MySqlCommand(
+                                                          @"select * from sakila.actor;",
+                                                          variableDeConnection);
+
+
+
+                    MySqlDataReader reader = variableDeCommande.ExecuteReader();
+                    reader.Read();
+                    Console.WriteLine(reader.GetString(1));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("command problem ");
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("can not open connection ! because of connection");
+            }
+
+            // Create the command
+            //SqlCommand command = new SqlCommand("SELECT * FROM TableName WHERE FirstColumn = @firstColumnValue", conn);
+            // Add the parameters.
+            //command.Parameters.Add(new SqlParameter("firstColumnValue", 1));
+
+
             Human onePerson;
             onePerson = new Student("Jaelle","Yaba",1993,8,5);
             onePerson.objectName = "Special Student";
+            onePerson.objectDescription = "Object Test";
             Console.WriteLine(onePerson.objectName);
             testerPointeur oneTest;
             oneTest = new testerPointeur();

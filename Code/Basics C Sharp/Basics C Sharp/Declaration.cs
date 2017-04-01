@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using testInterface;
 
 
 namespace testInterface
@@ -23,45 +24,7 @@ namespace testInterface
         }
     }
 
-    class Point : IPoint
-    {
-        // Fields:
-        private int _x;
-        private int _y;
-
-        // Constructor:
-        public Point(int x, int y)
-        {
-            _x = x;
-            _y = y;
-        }
-
-        // Property implementation:
-        public int x
-        {
-            get
-            {
-                return _x;
-            }
-
-            set
-            {
-                _x = value;
-            }
-        }
-
-        public int y
-        {
-            get
-            {
-                return _y;
-            }
-            set
-            {
-                _y = value;
-            }
-        }
-    }
+    
 }
 
 
@@ -71,6 +34,14 @@ namespace Declaration
 
     interface IObject
     {
+        int objectId
+        {
+            get;
+        }
+        bool dataBaseSaving
+        {
+            get;
+        }
         string objectName
         {
             set; get;
@@ -86,6 +57,8 @@ namespace Declaration
         // Attributs
         private string _objectName;
         private string _objectDescription;
+        private int _objectId;
+        private bool _dataBaseSaving;
 
         // Contructeurs
         public Object(string name, string description)
@@ -95,6 +68,14 @@ namespace Declaration
         }
 
         // Implementations des méthodes
+        public int objectId
+        {
+            get { return _objectId; }
+        }
+        public bool dataBaseSaving
+        {
+            get { return _dataBaseSaving; }
+        }
         public string objectName
         {
             get
@@ -146,13 +127,23 @@ namespace Declaration
             _firstName = "Random First Name";
             _lastName = "Random Last Name";
             _dateOfBirth = new DateTime(1717, 7, 17);
-        }
+            _phoneNumber = "111111111";
+            _fatherName = "Father Name";
+            _motherName = "Mother Name";
+            _cityzenchip = "Benin";
+            _scholarYear = "2017-2018";
+    }
 
         public Human(string firstName, string lastName, int year, int month, int day) :base("Human","Description of class Human")
         {
             _firstName = firstName;
             _lastName = lastName;
             _dateOfBirth = new DateTime(year, month, day);
+            _phoneNumber = "111111111";
+            _fatherName = "Father Name";
+            _motherName = "Mother Name";
+            _cityzenchip = "Benin";
+            _scholarYear = "2017-2018";
         }
 
         public string firstName
@@ -197,12 +188,51 @@ namespace Declaration
 
         }
 
+        public string phoneNumber
+        {
+            set { _phoneNumber = value; }
+            get { return _phoneNumber; }
+        }
+
+        public string fatherName
+        {
+            set { _fatherName = value; }
+            get { return _fatherName; }
+        }
+
+        public string motherName
+        {
+            set { _motherName = value; }
+            get { return _motherName; }
+        }
+
+        public string cityzenchip
+        {
+            set { _cityzenchip = value; }
+            get { return _cityzenchip; }
+        }
+
+        public string scholarYear
+        {
+            set { _scholarYear = value; }
+            get { return _scholarYear; }
+        }
+
         private string _firstName;
 
         private string _lastName;
 
         private DateTime _dateOfBirth;
 
+        private string _phoneNumber;
+
+        private string _fatherName;
+
+        private string _motherName;
+
+        private string _cityzenchip;
+
+        private string _scholarYear;
     }
 
     interface IStudent
@@ -213,7 +243,7 @@ namespace Declaration
         }
     }
 
-    class Student : Human, IStudent
+    class Student : Human, IStudent, IPoint
     {
         public Student(string firstName, string lastName, int year, int month, int day) :base(firstName, lastName, year, month, day)
         {
@@ -244,6 +274,35 @@ namespace Declaration
         }
 
         private string _classTaken;
+        private int _x;
+        private int _y;
+
+
+        // Property implementation:
+        public int x
+        {
+            get
+            {
+                return _x;
+            }
+
+            set
+            {
+                _x = value;
+            }
+        }
+
+        public int y
+        {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+            }
+        }
     }
 
     class Employee : Human
